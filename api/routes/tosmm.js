@@ -101,7 +101,8 @@ router.delete('/:productId', (req, res, next) => {
 
 setInterval(() => {
     m_status.isalive = false;
-    console.log('[tosmm] setTimeout()...reload-alive');
+    //console.log('[tosmm] setTimeout()...reload-alive');
+    process.stdout.write('ò');
 }, 20 * 1000, 'reload-alive');
 
 
