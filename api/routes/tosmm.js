@@ -10,6 +10,9 @@ let m_statistics = {
         counts: 0
     }
 };
+
+let m_retainTimer;
+
 /****************************************************/
 //                    G E T                         //
 /****************************************************/
@@ -55,6 +58,13 @@ router.post('/status', (req, res, next) => {
         message: 'Handling POST requests to /tosmm/status',
         createdStatus: status
     });
+
+    if (m_retainTimer) clearTimeout(m_retainTimer);
+    m_retainTimer = setTimeout(() => {
+        m_status.isalive = false;
+        //console.log('[pokedc] setTimeout()...reload-alive');
+        process.stdout.write('ò');
+    }, 3 * 60 * 1000, 'reload-alive'); // 3 mins
 });
 
 router.post('/statistics/users', (req, res, next) => {
@@ -99,11 +109,12 @@ router.delete('/:productId', (req, res, next) => {
 });
 */
 
+/*
 setInterval(() => {
     m_status.isalive = false;
     //console.log('[tosmm] setTimeout()...reload-alive');
     process.stdout.write('ò');
 }, 20 * 1000, 'reload-alive');
-
+*/
 
 module.exports = router;

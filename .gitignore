@@ -2,3 +2,6 @@ node_modules
 *.code-workspace
 .vscode
 coverage
+bk_index.err
+bk_index.out
+typescript

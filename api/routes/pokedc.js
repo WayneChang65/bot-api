@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 let m_status = {
-    isalive: false
+    isalive: false,
+    online: 'OFFLINE'
 };
 
 let m_statistics = {
@@ -45,7 +46,8 @@ router.get('/statistics/users', (req, res, next) => {
 
 router.post('/status', (req, res, next) => {
     const status = {
-        isalive: req.body.isalive
+        isalive: req.body.isalive,
+        online: req.body.online
     };
 
     m_status = status;
@@ -58,9 +60,10 @@ router.post('/status', (req, res, next) => {
     if (m_retainTimer) clearTimeout(m_retainTimer);
     m_retainTimer = setTimeout(() => {
         m_status.isalive = false;
+        m_status.online = 'OFFLINE';
         //console.log('[pokedc] setTimeout()...reload-alive');
         process.stdout.write('ó');
-    }, 3 * 1000, 'reload-alive');
+    }, 3 * 60 * 1000, 'reload-alive'); // 3 mins
 });
 
 router.post('/statistics/users', (req, res, next) => {
