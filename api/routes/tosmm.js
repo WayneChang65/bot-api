@@ -72,13 +72,7 @@ router.post('/status', (req, res, next) => {
 });
 
 router.post('/statistics', (req, res, next) => {
-    const statistics = {
-        groups: req.body.groups,
-        users: req.body.users
-    };
-
-    m_statistics = statistics;
-
+    let statistics;
     res.status(201).json({
         message: 'Handling POST requests to /tosmm/statistics',
         createdStatus: statistics
@@ -87,7 +81,8 @@ router.post('/statistics', (req, res, next) => {
 
 router.post('/statistics/users', (req, res, next) => {
     const users = {
-        conuts: req.body.counts
+        counts: req.body.counts,
+        active: req.body.active
     };
 
     m_statistics.users = users;
@@ -100,7 +95,8 @@ router.post('/statistics/users', (req, res, next) => {
 
 router.post('/statistics/groups', (req, res, next) => {
     const groups = {
-        conuts: req.body.counts
+        counts: req.body.counts,
+        active: req.body.active
     };
 
     m_statistics.groups = groups;
