@@ -3,12 +3,12 @@
 ### API 規畫
 * tosmm
     * status
-        * {isalive: true}
+        * {isalive: true, online: 'OFFLINE'}
     * statistics
         * groups
-            * {total: 123, active: 100}
+            * {counts: 123, active: 100}
         * users
-            * {total: 12345, active: 11111}
+            * {counts: 12345, active: 11111}
         * toro
             * tos
             * tg
@@ -24,9 +24,9 @@
 
 * pokedc
     * status
-        * {isalive: true}
+        * {isalive: true, online: 'ONLINE'}
     * statistics
         * users
-            * {total: 1234}
+            * {counts: 1234}
 #### api/pokedc/status
 #### api/pokedc/statistics/users

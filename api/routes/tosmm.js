@@ -8,7 +8,12 @@ let m_status = {
 
 let m_statistics = {
     users: {
-        counts: 0
+        counts: 0,
+        active: 0
+    },
+    groups: {
+        counts: 0,
+        active: 0
     }
 };
 
@@ -29,15 +34,11 @@ router.get('/status', (req, res, next) => {
 });
 
 router.get('/statistics', (req, res, next) => {
-    res.status(200).json({
-        message: 'Handling GET requests to /tosmm/statistics'
-    });
+    res.status(200).json(m_statistics);
 });
 
 router.get('/statistics/groups', (req, res, next) => {
-    res.status(200).json({
-        message: 'Handling GET requests to /tosmm/statistics/groups'
-    });
+    res.status(200).json(m_statistics.groups);
 });
 
 router.get('/statistics/users', (req, res, next) => {
@@ -70,6 +71,20 @@ router.post('/status', (req, res, next) => {
     }, 3 * 60 * 1000, 'reload-alive'); // 3 mins
 });
 
+router.post('/statistics', (req, res, next) => {
+    const statistics = {
+        groups: req.body.groups,
+        users: req.body.users
+    };
+
+    m_statistics = statistics;
+
+    res.status(201).json({
+        message: 'Handling POST requests to /tosmm/statistics',
+        createdStatus: statistics
+    });
+});
+
 router.post('/statistics/users', (req, res, next) => {
     const users = {
         conuts: req.body.counts
@@ -80,6 +95,19 @@ router.post('/statistics/users', (req, res, next) => {
     res.status(201).json({
         message: 'Handling POST requests to /tosmm/statistics/users',
         createdStatus: users
+    });
+});
+
+router.post('/statistics/groups', (req, res, next) => {
+    const groups = {
+        conuts: req.body.counts
+    };
+
+    m_statistics.groups = groups;
+
+    res.status(201).json({
+        message: 'Handling POST requests to /tosmm/statistics/groups',
+        createdStatus: groups
     });
 });
 
