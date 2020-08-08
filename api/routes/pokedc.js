@@ -68,7 +68,7 @@ router.post('/status', (req, res, next) => {
 
 router.post('/statistics/users', (req, res, next) => {
     const users = {
-        conuts: req.body.counts
+        counts: req.body.counts
     };
 
     m_statistics.users = users;
@@ -78,42 +78,5 @@ router.post('/statistics/users', (req, res, next) => {
         createdStatus: users
     });
 });
-/*
-router.get('/:productId', (req, res, next) => {
-    const id = req.params.productId;
-    if (id === 'special') {
-        res.status(200).json({
-            message: 'You discovered the special ID',
-            id: id
-        });
-    } else {
-        res.status(200).json({
-            message: 'You passed an ID'
-        });
-    }
-});
-*/
-/*
-router.patch('/:productId', (req, res, next) => {
-    res.status(200).json({
-        message: 'Updated product!'
-    });
-});
-*/
-/*
-router.delete('/:productId', (req, res, next) => {
-    res.status(200).json({
-        message: 'Deleted product!'
-    });
-});
-*/
-
-/*
-setInterval(() => {
-    m_status.isalive = false;
-    //console.log('[pokedc] setTimeout()...reload-alive');
-    process.stdout.write('ó');
-}, 20 * 1000, 'reload-alive');
-*/
 
 module.exports = router;

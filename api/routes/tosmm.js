@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 let m_status = {
-    isalive: false
+    isalive: false,
+    online: 'OFFLINE'
 };
 
 let m_statistics = {
@@ -49,7 +50,8 @@ router.get('/statistics/users', (req, res, next) => {
 
 router.post('/status', (req, res, next) => {
     const status = {
-        isalive: req.body.isalive
+        isalive: req.body.isalive,
+        online: req.body.online
     };
 
     m_status = status;
@@ -62,6 +64,7 @@ router.post('/status', (req, res, next) => {
     if (m_retainTimer) clearTimeout(m_retainTimer);
     m_retainTimer = setTimeout(() => {
         m_status.isalive = false;
+        m_status.online = 'OFFLINE';
         //console.log('[pokedc] setTimeout()...reload-alive');
         process.stdout.write('ò');
     }, 3 * 60 * 1000, 'reload-alive'); // 3 mins
@@ -79,42 +82,5 @@ router.post('/statistics/users', (req, res, next) => {
         createdStatus: users
     });
 });
-/*
-router.get('/:productId', (req, res, next) => {
-    const id = req.params.productId;
-    if (id === 'special') {
-        res.status(200).json({
-            message: 'You discovered the special ID',
-            id: id
-        });
-    } else {
-        res.status(200).json({
-            message: 'You passed an ID'
-        });
-    }
-});
-*/
-/*
-router.patch('/:productId', (req, res, next) => {
-    res.status(200).json({
-        message: 'Updated product!'
-    });
-});
-*/
-/*
-router.delete('/:productId', (req, res, next) => {
-    res.status(200).json({
-        message: 'Deleted product!'
-    });
-});
-*/
-
-/*
-setInterval(() => {
-    m_status.isalive = false;
-    //console.log('[tosmm] setTimeout()...reload-alive');
-    process.stdout.write('ò');
-}, 20 * 1000, 'reload-alive');
-*/
 
 module.exports = router;
