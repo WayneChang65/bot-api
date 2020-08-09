@@ -5,3 +5,4 @@ coverage
 bk_index.err
 bk_index.out
 typescript
+bk_index.*

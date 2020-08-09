@@ -14,6 +14,9 @@
             * tg
             * tb
             * kuzi
+    * toro
+        * tg
+
 #### api/tosmm/status
 #### api/tosmm/statistics/groups
 #### api/tosmm/statistics/users
@@ -21,6 +24,7 @@
 #### api/tosmm/statistics/toro/tg
 #### api/tosmm/statistics/toro/tb
 #### api/tosmm/statistics/toro/kuzi
+#### api/tosmm/toro/tg
 
 * pokedc
     * status

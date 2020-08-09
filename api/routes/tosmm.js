@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
+const basic_f = require('../../lib/basic_f.js');
 
 let m_status = {
     isalive: false,
@@ -19,6 +21,25 @@ let m_statistics = {
 
 let m_retainTimer;
 
+function getImageFolderFileName(_folder_with_abs_path, _callbackfun) {
+    let filesInFolderCount = 0;
+    fs.readdir(_folder_with_abs_path,
+        function (err, files) { //讀取目錄檔案列表
+            if (err) throw err;
+            filesInFolderCount = files.length;
+            if (filesInFolderCount != 0) {
+                let minNum = 1;
+                let maxNum = filesInFolderCount;
+                let randN = basic_f.getRandom(minNum, maxNum);
+                let pic_name = basic_f.numAddString0(randN, 4).toString() + '.jpg';
+                _callbackfun(pic_name);
+            } else {
+                console.log('ERROR: No files here.');
+                _callbackfun(undefined);
+            }
+        }
+    );
+}
 /****************************************************/
 //                    G E T                         //
 /****************************************************/
@@ -44,6 +65,30 @@ router.get('/statistics/groups', (req, res, next) => {
 router.get('/statistics/users', (req, res, next) => {
     res.status(200).json(m_statistics.users);
 });
+
+router.get('/toro/tg', (req, res, next) => {
+    let picFolderAbsPath = '/home/wayne/lb_images/tg1_img';
+    getImageFolderFileName(picFolderAbsPath,
+        (pic_name) => {
+            let options = {
+                root: picFolderAbsPath,
+                dotfiles: 'deny',
+                headers: {
+                    'x-timestamp': Date.now(),
+                    'x-sent': true
+                }
+            }
+            res.status(200).sendFile(pic_name, options, (err) => {
+                if (err) {
+                    next(err);
+                } else {
+                    console.log('Sent:', pic_name);
+                }
+            });
+        }
+    );
+});
+
 
 /****************************************************/
 //                    P O S T                       //
