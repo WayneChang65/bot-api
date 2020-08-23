@@ -50,22 +50,92 @@ router.get('/', (req, res, next) => {
     });
 });
 
+/**
+ * @swagger
+ *
+ * /tosmm/status:
+ *   get:
+ *     tags:
+ *       - TosMM
+ *     description: 取得伺服器狀態
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: OK
+ */
 router.get('/status', (req, res, next) => {
     res.status(200).json(m_status);
 });
 
+/**
+ * @swagger
+ *
+ * /tosmm/statistics:
+ *   get:
+ *     tags:
+ *       - TosMM
+ *     description: 取得土司小妹ロボ統計訊息
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: OK
+ */
 router.get('/statistics', (req, res, next) => {
     res.status(200).json(m_statistics);
 });
 
+/**
+ * @swagger
+ *
+ * /tosmm/statistics/groups:
+ *   get:
+ *     tags:
+ *       - TosMM
+ *     description: 取得土司小妹ロボ被使用的總群組數
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: OK
+ */
 router.get('/statistics/groups', (req, res, next) => {
     res.status(200).json(m_statistics.groups);
 });
 
+/**
+ * @swagger
+ *
+ * /tosmm/statistics/users:
+ *   get:
+ *     tags:
+ *       - TosMM
+ *     description: 取得土司小妹ロボ被使用的總人數
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: OK
+ */
 router.get('/statistics/users', (req, res, next) => {
     res.status(200).json(m_statistics.users);
 });
 
+/**
+ * @swagger
+ *
+ * /tosmm/toro/tg:
+ *   get:
+ *     tags:
+ *       - TosMM
+ *     description: 抽美女
+ *     produces:
+ *       - images/gif
+ *     responses:
+ *       200:
+ *         description: OK
+ */
 router.get('/toro/tg', (req, res, next) => {
     let picFolderAbsPath = '/home/wayne/lb_images/tg1_img';
     getImageFolderFileName(picFolderAbsPath,
@@ -94,6 +164,31 @@ router.get('/toro/tg', (req, res, next) => {
 //                    P O S T                       //
 /****************************************************/
 
+/**
+ * @swagger
+ *
+ * /tosmm/status:
+ *   post:
+ *     tags:
+ *       - TosMM
+ *     description: 設定伺服器狀態
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: isalive
+ *         description: 設定伺服器是否活著
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: online
+ *         description: 依照伺服器狀態，顯示字串設定
+ *         in: formData
+ *         required: true
+ *         type: string
+ *     responses:
+ *       201:
+ *         description: OK
+ */
 router.post('/status', (req, res, next) => {
     const status = {
         isalive: req.body.isalive,
@@ -124,6 +219,31 @@ router.post('/statistics', (req, res, next) => {
     });
 });
 
+/**
+ * @swagger
+ *
+ * /tosmm/statistics/users:
+ *   post:
+ *     tags:
+ *       - TosMM
+ *     description: 設定土司小妹ロボ使用者統計訊息
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: counts
+ *         description: 設定土司小妹ロボ被使用的總人數
+ *         in: formData
+ *         required: true
+ *         type: integer
+ *       - name: active
+ *         description: 設定土司小妹ロボ被使用的有效人數
+ *         in: formData
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       201:
+ *         description: OK
+ */
 router.post('/statistics/users', (req, res, next) => {
     const users = {
         counts: req.body.counts,
@@ -138,6 +258,31 @@ router.post('/statistics/users', (req, res, next) => {
     });
 });
 
+/**
+ * @swagger
+ *
+ * /tosmm/statistics/groups:
+ *   post:
+ *     tags:
+ *       - TosMM
+ *     description: 設定土司小妹ロボ群組統計訊息
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: counts
+ *         description: 設定土司小妹ロボ被使用的總群組數
+ *         in: formData
+ *         required: true
+ *         type: integer
+ *       - name: active
+ *         description: 設定土司小妹ロボ被使用的有效總群組數
+ *         in: formData
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       201:
+ *         description: OK
+ */
 router.post('/statistics/groups', (req, res, next) => {
     const groups = {
         counts: req.body.counts,

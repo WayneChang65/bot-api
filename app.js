@@ -2,17 +2,34 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
 const productRoutes = require('./api/routes/products.js');
 const orderRoutes = require('./api/routes/orders.js');
 const tosmmRoutes = require('./api/routes/tosmm.js');
 const pokedcRoutes = require('./api/routes/pokedc.js');
 
+const swaggerSpec = swaggerJSDoc({
+    swaggerDefinition: {
+        // basePath: '/', // Base path (optional),
+        // api文件網頁描述
+        info: {
+            title: 'LineBot API',
+            version: '1.0.0',
+            description: 'Generate LineBot API document with swagger'
+        }
+    },
+    apis: ['./api/routes/*.js']
+});
+
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
+
+app.use('/api/doc', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
