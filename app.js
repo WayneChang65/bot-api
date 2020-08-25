@@ -5,8 +5,6 @@ const bodyParser = require('body-parser');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
-const productRoutes = require('./api/routes/products.js');
-const orderRoutes = require('./api/routes/orders.js');
 const tosmmRoutes = require('./api/routes/tosmm.js');
 const pokedcRoutes = require('./api/routes/pokedc.js');
 
@@ -45,8 +43,6 @@ app.use((req, res, next) => {
 });
 
 // Routes which should handle requests
-app.use('/products', productRoutes);
-app.use('/orders', orderRoutes);
 app.use('/tosmm', tosmmRoutes);
 app.use('/pokedc', pokedcRoutes);
 

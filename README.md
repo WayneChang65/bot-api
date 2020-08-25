@@ -1,21 +1,25 @@
-## try-restful
+## bot-api
+針對TosMM以及PokeMM這兩個機器人的狀態提供讀取窗口。
 
 ### API 規畫
 * tosmm
-    * status
+    * [x] status
         * {isalive: true, online: 'OFFLINE'}
-    * statistics
-        * groups
+    * [ ] statistics
+        * [x] groups
             * {counts: 123, active: 100}
-        * users
+        * [x] users
             * {counts: 12345, active: 11111}
-        * toro
-            * tos
-            * tg
-            * tb
-            * kuzi
+        * [ ] toro
+            * [ ] tos
+            * [ ] tg
+            * [ ] tb
+            * [ ] kuzi
     * toro
-        * tg
+        * [x] tg
+        * [ ] tb
+        * [ ] kuzi
+        * [ ] tos
 
 #### api/tosmm/status
 #### api/tosmm/statistics/groups
@@ -27,10 +31,10 @@
 #### api/tosmm/toro/tg
 
 * pokedc
-    * status
+    * [x] status
         * {isalive: true, online: 'ONLINE'}
-    * statistics
-        * users
+    * [x] statistics
+        * [x] users
             * {counts: 1234}
 #### api/pokedc/status
 #### api/pokedc/statistics/users
