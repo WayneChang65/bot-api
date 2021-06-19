@@ -1,1 +1,4 @@
 node_modules
+Dockerfile
+build.sh
+docker-compose.yml

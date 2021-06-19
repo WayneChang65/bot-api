@@ -1,0 +1,1 @@
+sudo docker build . -t wayne/bot-api:latest --no-cache
