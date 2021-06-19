@@ -1,7 +1,7 @@
 {
-  "name": "try-restful",
+  "name": "bot-api",
   "version": "1.0.0",
-  "description": "try restful API",
+  "description": "linebot restful API",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WayneChang65/try-restful.git"
+    "url": "git+https://github.com/WayneChang65/bot-api.git"
   },
   "keywords": [
     "restful",
@@ -19,9 +19,9 @@
   "author": "Wayne Chang",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/WayneChang65/try-restful/issues"
+    "url": "https://github.com/WayneChang65/bot-api/issues"
   },
-  "homepage": "https://github.com/WayneChang65/try-restful#readme",
+  "homepage": "https://github.com/WayneChang65/bot-api#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
