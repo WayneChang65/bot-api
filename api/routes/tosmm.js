@@ -3,6 +3,8 @@ const router = express.Router();
 const fs = require('fs');
 const basic_f = require('../../lib/basic_f.js');
 
+const picPath = '/usr/share/httpd/noindex/images/lb_images/';
+
 let m_status = {
     isalive: false,
     online: 'OFFLINE'
@@ -137,7 +139,7 @@ router.get('/statistics/users', (req, res, next) => {
  *         description: OK
  */
 router.get('/toro/tg', (req, res, next) => {
-    let picFolderAbsPath = '/home/wayne/lb_images/tg1_img';
+    let picFolderAbsPath = picPath + 'tg1_img';
     getImageFolderFileName(picFolderAbsPath,
         (pic_name) => {
             let options = {
