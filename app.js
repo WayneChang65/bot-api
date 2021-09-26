@@ -1,3 +1,4 @@
+'use strict';
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
@@ -7,6 +8,7 @@ const swaggerUi = require('swagger-ui-express');
 
 const tosmmRoutes = require('./api/routes/tosmm.js');
 const pokedcRoutes = require('./api/routes/pokedc.js');
+const crawlerRoutes = require('./api/routes/crawler.js');
 
 const swaggerSpec = swaggerJSDoc({
     swaggerDefinition: {
@@ -45,6 +47,7 @@ app.use((req, res, next) => {
 // Routes which should handle requests
 app.use('/tosmm', tosmmRoutes);
 app.use('/pokedc', pokedcRoutes);
+app.use('/crawler', crawlerRoutes);
 
 app.use((req, res, next) => {
     const error = new Error('Not found');

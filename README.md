@@ -38,3 +38,8 @@
             * {counts: 1234}
 #### api/pokedc/status
 #### api/pokedc/statistics/users
+
+* crawler  
+#### api/crawler/sm  
+#### api/crawler/idb  
+#### api/crawler/pmc  
