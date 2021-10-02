@@ -1,15 +1,8 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
-<<<<<<< HEAD
 const scCheerio = require('../../lib/scraping-cheerio.js');
 const scPuppeteer = require('../../lib/scraping-puppeteer.js');
-scPuppeteer.init();
-=======
-const scraping = require('../../lib/scraping.js');
-const scraping2 = require('../../lib/scraping2.js');
-
->>>>>>> 8d4a2cfafd0d59803ac78df26fcd9e17e5449c4f
 /****************************************************/
 //                    G E T                         //
 /****************************************************/
@@ -46,7 +39,7 @@ router.get('/sm', async (req, res, next) => {
  *   get:
  *     tags:
  *       - Crawler
- *     description: 取得工業局網頁最新消息
+ *     description: 取得工業局網頁最新消息(cheerio)
  *     produces:
  *       - application/json
  *     responses:
@@ -56,6 +49,29 @@ router.get('/sm', async (req, res, next) => {
 router.get('/idb', async (req, res, next) => {
     let idb_data = await scCheerio.IDB_scraping();
     res.status(200).json(idb_data);
+});
+
+/**
+ * @swagger
+ *
+ * /crawler/idb2:
+ *   get:
+ *     tags:
+ *       - Crawler
+ *     description: 取得工業局網頁最新消息(puppeteer)
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: OK
+ */
+ router.get('/idb2', async (req, res, next) => {
+    try {
+        let idb_data = await scPuppeteer.IDB_scraping();
+        res.status(200).json(idb_data);
+    } catch (error) {
+        scPuppeteer.close();
+    }
 });
 
 /**
@@ -111,17 +127,12 @@ router.get('/pmc', async (req, res, next) => {
  *         description: OK
  */
  router.get('/imc/allapps', async (req, res, next) => {
-<<<<<<< HEAD
     try {
-        let imc_data = await scPuppeteer.IMC_scraping(scPuppeteer.page);
+        let imc_data = await scPuppeteer.IMC_scraping();
         res.status(200).json(imc_data);
     } catch (error) {
-        scPuppeteer.close(scPuppeteer.browser);   
+        scPuppeteer.close();
     }
-=======
-    let imc_data = await scraping2.IMC_scraping();
-    res.status(200).json(imc_data);
->>>>>>> 8d4a2cfafd0d59803ac78df26fcd9e17e5449c4f
 });
 
 module.exports = router;
