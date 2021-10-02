@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const scraping = require('../../lib/scraping.js');
+const scraping2 = require('../../lib/scraping2.js');
 
 /****************************************************/
 //                    G E T                         //
@@ -87,6 +88,25 @@ router.get('/pmc', async (req, res, next) => {
  router.get('/tmba', async (req, res, next) => {
     let tmba_data = await scraping.TMBA_scraping();
     res.status(200).json(tmba_data);
+});
+
+/**
+ * @swagger
+ *
+ * /crawler/imc/allapps:
+ *   get:
+ *     tags:
+ *       - Crawler
+ *     description: 取得智機雲所有app
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: OK
+ */
+ router.get('/imc/allapps', async (req, res, next) => {
+    let imc_data = await scraping2.IMC_scraping();
+    res.status(200).json(imc_data);
 });
 
 module.exports = router;
