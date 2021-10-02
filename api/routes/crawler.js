@@ -1,9 +1,9 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
-const scraping = require('../../lib/scraping.js');
-const scraping2 = require('../../lib/scraping2.js');
-
+const scCheerio = require('../../lib/scraping-cheerio.js');
+const scPuppeteer = require('../../lib/scraping-puppeteer.js');
+scPuppeteer.init();
 /****************************************************/
 //                    G E T                         //
 /****************************************************/
@@ -29,7 +29,7 @@ router.get('/', (req, res, next) => {
  *         description: OK
  */
 router.get('/sm', async (req, res, next) => {
-    let sm_data = await scraping.SM_scraping();
+    let sm_data = await scCheerio.SM_scraping();
     res.status(200).json(sm_data);
 });
 
@@ -48,7 +48,7 @@ router.get('/sm', async (req, res, next) => {
  *         description: OK
  */
 router.get('/idb', async (req, res, next) => {
-    let idb_data = await scraping.IDB_scraping();
+    let idb_data = await scCheerio.IDB_scraping();
     res.status(200).json(idb_data);
 });
 
@@ -67,7 +67,7 @@ router.get('/idb', async (req, res, next) => {
  *         description: OK
  */
 router.get('/pmc', async (req, res, next) => {
-    let pmc_data = await scraping.PMC_scraping();
+    let pmc_data = await scCheerio.PMC_scraping();
     res.status(200).json(pmc_data);
 });
 
@@ -86,7 +86,7 @@ router.get('/pmc', async (req, res, next) => {
  *         description: OK
  */
  router.get('/tmba', async (req, res, next) => {
-    let tmba_data = await scraping.TMBA_scraping();
+    let tmba_data = await scCheerio.TMBA_scraping();
     res.status(200).json(tmba_data);
 });
 
@@ -105,8 +105,12 @@ router.get('/pmc', async (req, res, next) => {
  *         description: OK
  */
  router.get('/imc/allapps', async (req, res, next) => {
-    let imc_data = await scraping2.IMC_scraping();
-    res.status(200).json(imc_data);
+    try {
+        let imc_data = await scPuppeteer.IMC_scraping(scPuppeteer.page);
+        res.status(200).json(imc_data);
+    } catch (error) {
+        scPuppeteer.close(scPuppeteer.browser);   
+    }
 });
 
 module.exports = router;
