@@ -66,12 +66,8 @@ router.get('/idb', async (req, res, next) => {
  *         description: OK
  */
  router.get('/idb2', async (req, res, next) => {
-    try {
-        let idb_data = await scPuppeteer.IDB_scraping();
-        res.status(200).json(idb_data);
-    } catch (error) {
-        scPuppeteer.close();
-    }
+    let idb_data = await scPuppeteer.IDB_scraping();
+    res.status(200).json(idb_data);
 });
 
 /**
@@ -127,12 +123,27 @@ router.get('/pmc', async (req, res, next) => {
  *         description: OK
  */
  router.get('/imc/allapps', async (req, res, next) => {
-    try {
-        let imc_data = await scPuppeteer.IMC_scraping();
-        res.status(200).json(imc_data);
-    } catch (error) {
-        scPuppeteer.close();
-    }
+    let imc_data = await scPuppeteer.IMC_scraping();
+    res.status(200).json(imc_data);
+});
+
+/**
+ * @swagger
+ *
+ * /crawler/smf/ut:
+ *   get:
+ *     tags:
+ *       - Crawler
+ *     description: 取得場域稼動率
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: OK
+ */
+ router.get('/smf/ut', async (req, res, next) => {
+    let smf_data = await scPuppeteer.SMF_scraping({ slowMo: 50 });
+    res.status(200).json(smf_data);
 });
 
 module.exports = router;
