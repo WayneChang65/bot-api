@@ -111,6 +111,25 @@ router.get('/pmc', async (req, res, next) => {
 /**
  * @swagger
  *
+ * /crawler/tiip:
+ *   get:
+ *     tags:
+ *       - Crawler
+ *     description: 取得產創平台網頁最新消息
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: OK
+ */
+ router.get('/tiip', async (req, res, next) => {
+    let tiip_data = await scCheerio.TIIP_scraping();
+    res.status(200).json(tiip_data);
+});
+
+/**
+ * @swagger
+ *
  * /crawler/imc/allapps:
  *   get:
  *     tags:
