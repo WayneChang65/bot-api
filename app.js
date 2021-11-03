@@ -12,7 +12,7 @@ const crawlerRoutes = require('./api/routes/crawler.js');
 
 const swaggerSpec = swaggerJSDoc({
     swaggerDefinition: {
-        // basePath: '/', // Base path (optional),
+        //basePath: '/', // Base path (optional),
         // api文件網頁描述
         info: {
             title: 'LineBot API',
@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-app.use('/api/doc', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
