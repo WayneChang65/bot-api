@@ -23,6 +23,7 @@ const swaggerSpec = swaggerJSDoc({
     apis: ['./api/routes/*.js']
 });
 
+app.disable('x-powered-by');
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
     extended: false
