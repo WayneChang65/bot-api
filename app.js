@@ -16,7 +16,7 @@ const swaggerSpec = swaggerJSDoc({
         // api文件網頁描述
         info: {
             title: 'LineBot API',
-            version: '1.0.0',
+            version: '2.1.1',
             description: 'Generate LineBot API document with swagger'
         }
     },
