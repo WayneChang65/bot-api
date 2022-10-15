@@ -1,6 +1,6 @@
 {
   "name": "bot-api",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "linebot restful API",
   "main": "server.js",
   "scripts": {
@@ -23,13 +23,13 @@
   },
   "homepage": "https://github.com/WayneChang65/bot-api#readme",
   "dependencies": {
-    "@waynechang65/fml-consolelog": "^1.1.1",
+    "@waynechang65/fml-consolelog": "^1.1.2",
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.10",
     "cross-fetch": "^3.1.5",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
-    "puppeteer": "^13.1.2"
+    "puppeteer": "^18.2.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.6",
