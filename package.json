@@ -1,6 +1,6 @@
 {
   "name": "bot-api",
-  "version": "2.2.0",
+  "version": "2.3.1",
   "description": "linebot restful API",
   "main": "server.js",
   "scripts": {
