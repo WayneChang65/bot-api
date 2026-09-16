@@ -1,6 +1,6 @@
 {
   "name": "bot-api",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "linebot restful API",
   "main": "server.js",
   "scripts": {
@@ -29,7 +29,7 @@
     "cross-fetch": "^3.1.5",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
-    "puppeteer": "^25.11.0"
+    "puppeteer-core": "^25.11.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14",
@@ -37,6 +37,6 @@
     "swagger-ui-express": "^4.6.3"
   },
   "allowScripts": {
-    "puppeteer@25.11.0": true
+    "puppeteer-core@25.11.0": true
   }
 }
