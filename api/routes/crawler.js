@@ -172,7 +172,7 @@ router.get('/pmc', async (req, res, next) => {
  *   get:
  *     tags:
  *       - Crawler
- *     description: 取得台灣各區域空氣品質數值
+ *     description: 取得台灣各測站空氣品質數值(AQI、氣溫、濕度)
  *     produces:
  *       - application/json
  *     responses:
@@ -180,7 +180,7 @@ router.get('/pmc', async (req, res, next) => {
  *         description: OK
  */
  router.get('/air', async (req, res, next) => {
-    let air_data = await scPuppeteer.AIR_scraping({ slowMo: 50 });
+    let air_data = await scCheerio.AIR_scraping();
     res.status(200).json(air_data);
 });
 
